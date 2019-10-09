@@ -2,7 +2,7 @@
 // Activity IV - Import tooltip text abbreviation method
 import excerpt from './excerpt.js';
 
-export default function StackedAreaChart(){ // does not need to have a name
+export default function StackedAreaChart(k){ // does not need to have a name
 	// init size
 	let margin ={
 		top: 40,
@@ -109,21 +109,19 @@ g.select(".y-axis").call(yAxis);
 			// Activity IV - Add tooltip events on the area paths
 			tooltip = g.select('.focus');
 
-			for (let i=0; i< dataCategories.length ;i++){
-				console.log(i);
-				console.log(dataCategories[i]+"\n");
-			}
+
+			// for (let i=0; i< dataCategories.length ;i++){
+			// 	console.log(i);
+			// 	console.log(dataCategories[i]+"\n");
+			// }
 			d3.selectAll("path")
 			.on("mouseover", (d,i)=>{
-				console.log('incorrect i: '+i)
+				// console.log('incorrect i: '+i)
 				if (i-2>=0){
-					console.log(i-2);
-					console.log(dataCategories[i-2]);
 					tooltip.text( excerpt(dataCategories[i-2], 100) ); 
 				}
 			})
 			.on("mouseout", d=>{
-				console.log('mouseout');
 				tooltip.text("")})
 			.on("click", handleClick)
 		
@@ -154,6 +152,7 @@ g.select(".y-axis").call(yAxis);
 		var value = listeners.on.apply(listeners, arguments);
 		return value === listeners ? chart : value;
 	};
+
 
 	function handleClick(d,i){
 		listeners.apply("selectCategory", this, [d.key,d.index]);
